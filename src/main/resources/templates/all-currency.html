@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Currencies</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #ffcc00;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            background-color: #ffa500;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #ffcc00;
+            color: #333;
+        }
+
+        td {
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+<h1>Валюта</h1>
+
+<div class="button-container">
+    <a th:href="@{/currency/sortedNatural}">
+        <button class="button">Sorted Natural</button>
+    </a>
+
+    <a th:href="@{/currency/all}">
+        <button class="button">Sorted None</button>
+    </a>
+
+    <a th:href="@{/currency/sortedReverse}">
+        <button class="button">Sorted Reverse</button>
+    </a>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Currency</th>
+        <th>Quantity</th>
+        <th>Currency Value</th>
+        <th>OST</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="currency : ${AllCurrency}">
+        <td th:text="${currency.id}"></td>
+        <td th:text="${currency.name}"></td>
+        <td th:text="${currency.quantity}"></td>
+        <td th:text="${currency.currency}"></td>
+        <td th:text="${currency.ost}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
