@@ -1,4 +1,4 @@
-package hadding.Model;
+package hadding.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

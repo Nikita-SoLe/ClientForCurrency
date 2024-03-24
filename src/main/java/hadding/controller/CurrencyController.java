@@ -1,8 +1,8 @@
-package hadding.Controller;
+package hadding.controller;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import hadding.Model.Currency;
+import hadding.model.Currency;
 import hadding.service.RestTemplateService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +15,6 @@ import java.util.Map;
 @Controller
 @RequestMapping("/currency")
 public class CurrencyController {
-
-
     private final RestTemplateService service;
 
     public CurrencyController(RestTemplateService service) {
@@ -40,10 +38,20 @@ public class CurrencyController {
 
     @GetMapping("/sortedReverse")
     public String getSortedReverse(Model model) throws JsonProcessingException {
-
         Map<String, Currency> currencyMap = service.getSortedCurrencyReverse();
         model.addAttribute("AllCurrency", currencyMap.values());
         return "all-currency";
     }
 
+    @GetMapping("/getCurrencyByName")
+    public String getCurrencyByName(String currency) {
+        return service.getCurrencyByName(currency);
+    }
+
+    @GetMapping("/update")
+    public String update(Model model) throws JsonProcessingException {
+        service.update();
+        model.addAttribute("AllCurrency", service.getAllCurrency().values());
+        return "all-currency";
+    }
 }

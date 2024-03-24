@@ -1,7 +1,7 @@
 package hadding.dao;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import hadding.Model.Currency;
+import hadding.model.Currency;
 
 import java.util.Map;
 

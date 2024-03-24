@@ -1,7 +1,7 @@
 package hadding.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import hadding.Model.Currency;
+import hadding.model.Currency;
 import hadding.dao.RestTempateDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

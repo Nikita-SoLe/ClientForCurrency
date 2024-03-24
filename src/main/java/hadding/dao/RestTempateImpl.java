@@ -2,9 +2,8 @@ package hadding.dao;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import hadding.Model.Currency;
+import hadding.model.Currency;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
@@ -70,7 +69,7 @@ public class RestTempateImpl implements RestTempateDAO {
     public String update() {
         String url = URL + "update";
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
+        System.out.println(responseEntity.getBody());
         return responseEntity.getBody();
-
     }
 }
