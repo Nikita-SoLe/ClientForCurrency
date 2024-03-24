@@ -4,21 +4,57 @@
     <meta charset="UTF-8">
     <title>All Currencies</title>
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-            margin: 0;
+        /* CSS для модального окна */
+        .modal {
+            display: none; /* Скрываем модальное окно по умолчанию */
+            position: fixed; /* Позиционируем модальное окно относительно экрана */
+            z-index: 1; /* Устанавливаем z-index, чтобы модальное окно было поверх других элементов */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; /* Добавляем прокрутку, если содержимое длинное */
+            background-color: rgba(0,0,0,0.4); /* Черный цвет фона с прозрачностью */
+        }
+
+        /* Стили для модального контента */
+        .modal-content {
+            background-color: #f2f2f2; /* Голубой цвет фона */
+            margin: 15% auto; /* 15% от верхней и нижней границы экрана */
             padding: 20px;
+            border: 1px solid #888;
+            width: 15%; /* Ширина модального контента */
+            border-radius: 10px; /* Скругляем углы */
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); /* Добавляем тень */
         }
 
-        h1 {
-            color: #333;
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 30px;
+        /* Заголовок модального окна */
+        .modal-content h2 {
+            color: #4a4a4a; /* Цвет текста */
+            text-align: center; /* Выравниваем по центру */
         }
 
+        /* Кнопка "Thank's" */
+        .thanks-button {
+            padding: 10px 20px;
+            background-color: #11f609;
+            color: #070707; /* Черный цвет текста */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+            margin-top: 20px;
+            display: block; /* Превращаем кнопку в блочный элемент */
+            margin: 0 auto; /* Устанавливаем отступы для центрирования */
+        }
+
+
+        .thanks-button:hover {
+            background-color: #9573d9; /* Нежно-фиолетово-красный цвет при наведении */
+        }
+
+        /* Кнопки внизу таблицы */
         .button-container {
             display: flex;
             justify-content: center;
@@ -28,8 +64,8 @@
         .button {
             padding: 10px 20px;
             margin: 0 10px;
-            background-color: #ffcc00;
-            color: #333;
+            background-color: #4CAF50; /* Зеленый цвет */
+            color: white; /* Белый цвет текста */
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -38,9 +74,10 @@
         }
 
         .button:hover {
-            background-color: #ffa500;
+            background-color: #45a049; /* Темно-зеленый цвет при наведении */
         }
 
+        /* Таблица */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -55,8 +92,8 @@
         }
 
         th {
-            background-color: #ffcc00;
-            color: #333;
+            background-color: #4CAF50; /* Зеленый цвет */
+            color: white; /* Белый цвет текста */
         }
 
         td {
@@ -84,10 +121,7 @@
         <button class="button">Sorted Reverse</button>
     </a>
 
-    <a th:href="@{/currency/updated}">
-        <button class="button">Updated</button>
-    </a>
-
+    <button id="updateButton" class="button">Updated</button> <!-- Добавляем id для кнопки Update -->
 </div>
 
 <table>
@@ -110,5 +144,43 @@
     </tr>
     </tbody>
 </table>
+
+<!-- Модальное окно -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="updateMessage">Updated</h2>
+        <button id="closeModalButton" class="thanks-button">Thank's</button> <!-- Кнопка для закрытия модального окна -->
+    </div>
+</div>
+
+<script>
+    // Получаем ссылки на элементы модального окна
+    var modal = document.getElementById("myModal");
+    var closeButton = document.getElementsByClassName("close")[0];
+    var closeModalButton = document.getElementById("closeModalButton");
+
+    // Функция, открывающая модальное окно
+    function openModal() {
+        modal.style.display = "block";
+    }
+
+    // Функция, закрывающая модальное окно
+    function closeModal() {
+        modal.style.display = "none";
+    }
+
+    // Добавляем обработчики событий для кнопки Update и кнопки закрытия модального окна
+    document.getElementById("updateButton").addEventListener("click", openModal);
+    closeButton.addEventListener("click", closeModal);
+    closeModalButton.addEventListener("click", closeModal);
+
+    // Для закрытия модального окна при клике за его пределами
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+</script>
 </body>
 </html>
