@@ -15,6 +15,4 @@ public class Currency {
         private Integer  quantity;
         private Double currency;
         private String ost;
-
-
 }

@@ -4,63 +4,23 @@
     <meta charset="UTF-8">
     <title>All Currencies</title>
     <style>
-        /* CSS для модального окна */
-        .modal {
-            display: none; /* Скрываем модальное окно по умолчанию */
-            position: fixed; /* Позиционируем модальное окно относительно экрана */
-            z-index: 1; /* Устанавливаем z-index, чтобы модальное окно было поверх других элементов */
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto; /* Добавляем прокрутку, если содержимое длинное */
-            background-color: rgba(0,0,0,0.4); /* Черный цвет фона с прозрачностью */
+        body {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
         }
-
-        /* Стили для модального контента */
-        .modal-content {
-            background-color: #f2f2f2; /* Голубой цвет фона */
-            margin: 15% auto; /* 15% от верхней и нижней границы экрана */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 15%; /* Ширина модального контента */
-            border-radius: 10px; /* Скругляем углы */
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); /* Добавляем тень */
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 36px;
         }
-
-        /* Заголовок модального окна */
-        .modal-content h2 {
-            color: #4a4a4a; /* Цвет текста */
-            text-align: center; /* Выравниваем по центру */
-        }
-
-        /* Кнопка "Thank's" */
-        .thanks-button {
-            padding: 10px 20px;
-            background-color: #11f609;
-            color: #070707; /* Черный цвет текста */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-size: 16px;
-            margin-top: 20px;
-            display: block; /* Превращаем кнопку в блочный элемент */
-            margin: 0 auto; /* Устанавливаем отступы для центрирования */
-        }
-
-
-        .thanks-button:hover {
-            background-color: #9573d9; /* Нежно-фиолетово-красный цвет при наведении */
-        }
-
-        /* Кнопки внизу таблицы */
         .button-container {
             display: flex;
             justify-content: center;
             margin-bottom: 20px;
         }
-
         .button {
             padding: 10px 20px;
             margin: 0 10px;
@@ -72,36 +32,81 @@
             transition: background-color 0.3s ease;
             font-size: 16px;
         }
-
         .button:hover {
-            background-color: #45a049; /* Темно-зеленый цвет при наведении */
+            background-color: #606760; /* Темно-зеленый цвет при наведении */
         }
-
-        /* Таблица */
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            background-color: #fff;
+            background-color: #1e1e1e; /* Цвет фона */
+            color: #ffffff; /* Цвет текста */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
         th, td {
             padding: 12px 15px;
             text-align: left;
         }
-
         th {
             background-color: #4CAF50; /* Зеленый цвет */
-            color: white; /* Белый цвет текста */
         }
-
         td {
             border-bottom: 1px solid #ddd;
         }
-
         tr:hover {
-            background-color: #f9f9f9;
+            background-color: #606760; /* Зеленый цвет при наведении */
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #1e1e1e; /* Цвет фона модального окна */
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #ffffff; /* Белая граница */
+            width: 15%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        }
+        .modal-content h2 {
+            color: #ffffff; /* Белый цвет текста */
+            text-align: center;
+        }
+        .thanks-button {
+            padding: 10px 20px;
+            background-color: #4CAF50; /* Зеленый цвет */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+            margin-top: 20px;
+            display: block;
+            margin: 0 auto;
+        }
+        .thanks-button:hover {
+            background-color: #606760; /* Темно-зеленый цвет при наведении */
+        }
+        .close {
+            color: #ffffff; /* Белый цвет текста */
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #aaaaaa; /* Серый цвет текста при наведении */
+            text-decoration: none;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -121,7 +126,7 @@
         <button class="button">Sorted Reverse</button>
     </a>
 
-    <button id="updateButton" class="button">Updated</button> <!-- Добавляем id для кнопки Update -->
+    <button id="updateButton" class="button">Update</button>
 </div>
 
 <table>
@@ -141,41 +146,42 @@
         <td th:text="${currency.quantity}"></td>
         <td th:text="${currency.currency}"></td>
         <td th:text="${currency.ost}"></td>
+
+        <td>
+            <a th:href="@{/currency/view/{id}(id=${currency.id})}" th:method="get">
+                <button class="button">Convert</button>
+            </a>
+        </td>
+
     </tr>
     </tbody>
 </table>
 
-<!-- Модальное окно -->
 <div id="myModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
         <h2 id="updateMessage">Updated</h2>
-        <button id="closeModalButton" class="thanks-button">Thank's</button> <!-- Кнопка для закрытия модального окна -->
+        <button id="closeModalButton" class="thanks-button">Thank's</button>
     </div>
 </div>
 
 <script>
-    // Получаем ссылки на элементы модального окна
     var modal = document.getElementById("myModal");
     var closeButton = document.getElementsByClassName("close")[0];
     var closeModalButton = document.getElementById("closeModalButton");
 
-    // Функция, открывающая модальное окно
     function openModal() {
         modal.style.display = "block";
     }
 
-    // Функция, закрывающая модальное окно
     function closeModal() {
         modal.style.display = "none";
     }
 
-    // Добавляем обработчики событий для кнопки Update и кнопки закрытия модального окна
     document.getElementById("updateButton").addEventListener("click", openModal);
     closeButton.addEventListener("click", closeModal);
     closeModalButton.addEventListener("click", closeModal);
 
-    // Для закрытия модального окна при клике за его пределами
     window.onclick = function(event) {
         if (event.target == modal) {
             closeModal();

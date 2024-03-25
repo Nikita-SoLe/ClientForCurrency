@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fantastic Currency Details</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 36px;
+        }
+        #details {
+            background-color: #333333;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 0 auto;
+            width: 50%;
+        }
+        #details p {
+            margin: 10px 0;
+        }
+        form {
+            margin-top: 20px;
+            text-align: center;
+        }
+        label {
+            display: block;
+            font-size: 18px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #cccccc;
+            width: 60%;
+            margin-top: 5px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        #convertedAmount {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #555555;
+            border-radius: 10px;
+        }
+        #backButton {
+            margin-top: 20px;
+            text-align: center;
+        }
+        #backButton button {
+            padding: 10px 20px;
+            background-color: #333333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+<h1>Fantastic Currency Details</h1>
+<div id="details" th:object="${Currency}">
+    <p>ID: <span th:text="*{id}"></span></p>
+    <p>Name: <span th:text="*{name}"></span></p>
+    <p>Quantity: <span th:text="*{quantity}"></span></p>
+    <p>Currency: <span th:text="*{currency}"></span></p>
+    <p>OST: <span th:text="*{ost}"></span></p>
+</div>
+<div id="convertedAmount">
+    <p>Converted Amount: <span th:text="${convertedAmount}"></span></p>
+</div>
+<form th:action="@{/currency/convert}" th:object="${Currency}" method="get">
+    <input type="hidden" th:id="id" th:name="id" th:value="${Currency.id}">
+    <label for="amount">Amount of Currency to Get:</label>
+    <input type="text" id="amount" name="amount"><br><br>
+    <input type="submit" value="Convert">
+</form>
+
+<div id="backButton">
+    <a th:href="@{/currency/back}" th:method="get">
+        <button class="button">Back</button>
+    </a>
+</div>
+</body>
+</html>

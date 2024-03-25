@@ -5,15 +5,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-public class TestUpdate {
+public class RestTemplateImplTest {
     @Autowired
-    private RestTempateDAO restTempateDAO;
+    private RestTemplateDAO restTemplateDAO;
+
+    @Test
+    void convert() {
+        Double result = restTemplateDAO.convert(1, 100L);
+        assertEquals(Double.class, result.getClass());
+    }
 
     @Test
     void update() {
-        String response = restTempateDAO.update();
+        String response = restTemplateDAO.update();
         assertNotNull(response);
     }
 

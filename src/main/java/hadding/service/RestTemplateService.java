@@ -1,9 +1,8 @@
 package hadding.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import hadding.dao.RestTemplateDAO;
 import hadding.model.Currency;
-import hadding.dao.RestTempateDAO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -11,10 +10,9 @@ import java.util.Map;
 @Service
 public class RestTemplateService implements RestTemplate{
 
-    @Autowired
-    private final RestTempateDAO service;
+    private final RestTemplateDAO service;
 
-    public RestTemplateService(RestTempateDAO service) {
+    public RestTemplateService(RestTemplateDAO service) {
         this.service = service;
     }
 
@@ -25,12 +23,12 @@ public class RestTemplateService implements RestTemplate{
     }
 
     @Override
-    public String getCurrencyByName(String currency) {
+    public Currency getCurrencyByName(String currency) {
         return service.getCurrencyByName(currency);
     }
 
     @Override
-    public String getCurrencyById(Integer id) {
+    public Currency getCurrencyById(Integer id) {
         return service.getCurrencyById(id);
     }
 
@@ -45,7 +43,7 @@ public class RestTemplateService implements RestTemplate{
     }
 
     @Override
-    public String convert(Integer id, Long value) {
+    public Double convert(Integer id, Long value) {
         return service.convert(id, value);
     }
 

@@ -5,19 +5,19 @@ import hadding.model.Currency;
 
 import java.util.Map;
 
-public interface RestTempateDAO {
+public interface RestTemplateDAO {
 
     Map<String, Currency> getAllCurrency() throws JsonProcessingException;
 
-    String getCurrencyByName(String currency);
+    Currency getCurrencyByName(String currency);
 
-    String getCurrencyById(Integer id);
+    Currency getCurrencyById(Integer id);
 
     Map<String, Currency> getSortedCurrencyNatural() throws JsonProcessingException;
 
     Map<String, Currency> getSortedCurrencyReverse() throws JsonProcessingException;
 
-    String convert(Integer id, Long value);
+    Double convert(Integer id, Long value);
 
     String update();
 
